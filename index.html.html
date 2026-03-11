@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Financial Impact of Cyberattacks on U.S. Industries | FAU OURI</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #002D62;
+    --navy-light: #0a3d7a;
+    --red: #CC0000;
+    --red-light: #e61919;
+    --gold: #C8922A;
+    --cream: #FAF8F3;
+    --smoke: #F0EDE6;
+    --dark: #1a1a2e;
+    --text: #2c2c3e;
+    --muted: #6b6b80;
+    --border: rgba(0,45,98,0.12);
+    --glow: rgba(0,45,98,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVIGATION ─────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(0,45,98,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,146,42,0.3);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .nav-brand .owl { font-size: 1.3rem; }
+  .nav-links {
+    display: flex; gap: 0.25rem; list-style: none;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.1); }
+
+  /* ── HERO ───────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    position: relative;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    overflow: hidden;
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+  }
+
+  /* animated grid background */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(200,146,42,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,146,42,0.07) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridShift 20s linear infinite;
+  }
+  @keyframes gridShift {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(60px); }
+  }
+  .hero::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,45,98,0) 0%, rgba(0,20,50,0.7) 100%);
+    pointer-events: none;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(200,146,42,0.15);
+    border: 1px solid rgba(200,146,42,0.4);
+    color: var(--gold);
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.4rem 1rem; border-radius: 100px;
+    margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-subtitle {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-stats {
+    display: flex; gap: 1px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 700px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+  .hero-stat {
+    flex: 1; padding: 1.5rem 1rem;
+    background: rgba(0,20,50,0.4);
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .hero-stat:hover { background: rgba(200,146,42,0.1); }
+  .hero-stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+  .hero-stat-label {
+    font-size: 0.68rem; font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase; letter-spacing: 0.07em;
+    margin-top: 0.3rem; display: block;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    z-index: 2; color: rgba(255,255,255,0.4);
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    animation: bounce 2s ease infinite;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(200,146,42,0.6), transparent);
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION BASE ───────────────────────────────────── */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-full {
+    max-width: 100%;
+    padding: 6rem 0;
+  }
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+  .section-label {
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .section-label::before {
+    content: ''; width: 24px; height: 2px;
+    background: var(--red);
+    display: inline-block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .section-body {
+    font-size: 1rem; line-height: 1.8;
+    color: var(--muted);
+    max-width: 720px;
+  }
+
+  /* ── DIVIDER ─────────────────────────────────────────── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* ── THESIS BLOCK ───────────────────────────────────── */
+  .thesis-section {
+    background: var(--navy);
+    padding: 6rem 2rem;
+  }
+  .thesis-inner {
+    max-width: 900px; margin: 0 auto; text-align: center;
+  }
+  .thesis-label {
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .thesis-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-style: italic;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.8;
+    border-left: 3px solid var(--gold);
+    padding-left: 2rem;
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* ── MACRO METRICS STRIP ───────────────────────────── */
+  .metrics-strip {
+    background: var(--smoke);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 2rem;
+  }
+  .metrics-grid {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .metric-card {
+    background: var(--cream);
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .metric-card:hover { background: #fff; }
+  .metric-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem; font-weight: 700;
+    color: var(--navy);
+    display: block;
+    line-height: 1;
+  }
+  .metric-unit {
+    font-size: 0.9rem; color: var(--red);
+    font-weight: 600;
+  }
+  .metric-label {
+    font-size: 0.72rem; color: var(--muted);
+    margin-top: 0.5rem; display: block;
+    line-height: 1.4;
+  }
+
+  /* ── INDUSTRY CARDS ─────────────────────────────────── */
+  .industries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .industry-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+  }
+  .industry-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,45,98,0.12);
+  }
+  .card-accent {
+    height: 5px;
+    background: linear-gradient(90deg, var(--navy), var(--red));
+  }
+  .card-body { padding: 1.75rem; }
+  .card-rank {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; font-weight: 500;
+    color: var(--red);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .card-incidents {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(0,45,98,0.06);
+    color: var(--navy);
+    font-size: 0.75rem; font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+  }
+  .card-metrics {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .card-metric { }
+  .card-metric-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    color: var(--red);
+    display: block;
+  }
+  .card-metric-lbl {
+    font-size: 0.67rem; color: var(--muted);
+    line-height: 1.3;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .card-highlight {
+    background: rgba(0,45,98,0.04);
+    border-left: 3px solid var(--navy);
+    padding: 0.75rem 1rem;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.5;
+    margin-top: 0.5rem;
+  }
+  .card-highlight strong { color: var(--navy); }
+
+  /* ── BAR CHART ──────────────────────────────────────── */
+  .chart-section {
+    background: var(--navy);
+    padding: 6rem 2rem;
+  }
+  .chart-inner { max-width: 1000px; margin: 0 auto; }
+  .chart-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 700;
+    color: #fff; margin-bottom: 0.5rem;
+  }
+  .chart-sub { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 3rem; }
+  .bar-chart { display: flex; flex-direction: column; gap: 1rem; }
+  .bar-row {
+    display: flex; align-items: center; gap: 1rem;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .bar-row.visible { opacity: 1; transform: translateX(0); }
+  .bar-label {
+    font-size: 0.78rem; color: rgba(255,255,255,0.75);
+    font-weight: 500; width: 200px; flex-shrink: 0;
+    text-align: right; line-height: 1.3;
+  }
+  .bar-track {
+    flex: 1; height: 34px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--navy-light), var(--red));
+    border-radius: 4px;
+    width: 0%;
+    transition: width 1s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+  }
+  .bar-fill.animate { }
+  .bar-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; color: rgba(255,255,255,0.6);
+    width: 50px; flex-shrink: 0;
+  }
+
+  /* ── COST TABLE ─────────────────────────────────────── */
+  .cost-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-top: 3rem;
+  }
+  .cost-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .cost-table thead tr {
+    background: var(--navy);
+  }
+  .cost-table thead th {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 1rem 1.25rem;
+    text-align: left;
+  }
+  .cost-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+  .cost-table tbody tr:last-child { border-bottom: none; }
+  .cost-table tbody tr:hover { background: rgba(0,45,98,0.03); }
+  .cost-table td { padding: 1rem 1.25rem; color: var(--text); vertical-align: middle; }
+  .cost-table .rank-cell {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; color: var(--red); font-weight: 500;
+  }
+  .cost-table .sector-name { font-weight: 600; color: var(--navy); }
+  .cost-table .cost-cell {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: var(--red);
+  }
+  .cost-bar-cell { min-width: 140px; }
+  .cost-bar-inner {
+    height: 8px; border-radius: 4px;
+    background: linear-gradient(90deg, var(--navy), var(--red));
+    transition: width 1s ease;
+  }
+  .trend-up { color: var(--red); font-weight: 600; }
+  .trend-dn { color: #2e9e4f; font-weight: 600; }
+
+  /* ── CASE STUDIES ───────────────────────────────────── */
+  .cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .case-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .case-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(0,45,98,0.1);
+  }
+  .case-card::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle at top right, rgba(204,0,0,0.06), transparent 70%);
+  }
+  .case-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; color: var(--red); font-weight: 500;
+    letter-spacing: 0.1em; margin-bottom: 0.5rem;
+  }
+  .case-org {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--navy); margin-bottom: 0.75rem;
+  }
+  .case-cost {
+    font-size: 1.6rem; font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    color: var(--red); margin-bottom: 1rem;
+  }
+  .case-desc {
+    font-size: 0.83rem; color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* ── PREVENTION ROI ─────────────────────────────────── */
+  .roi-section {
+    background: linear-gradient(135deg, var(--navy) 0%, #001840 100%);
+    padding: 6rem 2rem;
+  }
+  .roi-inner { max-width: 1100px; margin: 0 auto; }
+  .roi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .roi-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .roi-card:hover {
+    background: rgba(255,255,255,0.09);
+    transform: translateY(-3px);
+  }
+  .roi-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .roi-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--gold); display: block;
+    margin-bottom: 0.4rem;
+  }
+  .roi-desc {
+    font-size: 0.8rem; color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+  }
+
+  /* ── CONCLUSIONS ────────────────────────────────────── */
+  .conclusions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .conclusion-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    background: #fff;
+    display: flex; gap: 1rem;
+    transition: box-shadow 0.2s;
+  }
+  .conclusion-card:hover { box-shadow: 0 8px 30px rgba(0,45,98,0.08); }
+  .conclusion-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900;
+    color: rgba(0,45,98,0.12);
+    line-height: 1; flex-shrink: 0;
+    width: 40px;
+  }
+  .conclusion-text {
+    font-size: 0.88rem; color: var(--text);
+    line-height: 1.6;
+  }
+  .conclusion-text strong { color: var(--navy); }
+
+  /* ── REFERENCES ─────────────────────────────────────── */
+  .references-section {
+    background: var(--smoke);
+    padding: 6rem 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .refs-inner { max-width: 900px; margin: 0 auto; }
+  .ref-list {
+    list-style: none;
+    margin-top: 2rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  .ref-list li {
+    font-size: 0.82rem; color: var(--muted);
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    position: relative;
+    padding: 0.75rem 1rem 0.75rem 1.5rem;
+    border-left: 2px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .ref-list li:hover { border-left-color: var(--navy); }
+  .ref-list a {
+    color: var(--navy);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .ref-list a:hover { text-decoration: underline; color: var(--red); }
+
+  /* ── FOOTER ─────────────────────────────────────────── */
+  footer {
+    background: var(--dark);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  footer p { color: rgba(255,255,255,0.35); font-size: 0.78rem; line-height: 1.8; }
+  footer strong { color: rgba(255,255,255,0.6); }
+
+  /* ── ANIMATIONS / SCROLL REVEAL ─────────────────────── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ─────────────────────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .hero-stats { flex-direction: column; }
+    .bar-label { width: 120px; font-size: 0.68rem; }
+    section { padding: 4rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-brand">
+    <span class="owl">🦉</span>
+    <span>FAU OURI &nbsp;·&nbsp; Cybersecurity Finance Research</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#industries">Industries</a></li>
+    <li><a href="#costs">Cost Analysis</a></li>
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#prevention">Prevention ROI</a></li>
+    <li><a href="#conclusions">Conclusions</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">📍 Florida Atlantic University &nbsp;·&nbsp; OURI Research 2026</div>
+    <h1>The Financial Impact of<br><em>Cyberattacks</em> on U.S. Industries</h1>
+    <p class="hero-subtitle">
+      A sector-by-sector cost analysis of the five most targeted U.S. industries<br>
+      examining breach costs, ransomware losses, and cybersecurity prevention investment.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-value">$9.36<span class="metric-unit">M</span></span>
+        <span class="hero-stat-label">U.S. avg. breach cost 2024</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">9,695</span>
+        <span class="hero-stat-label">Incidents — Top 5 Sectors</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">$9.22<span class="metric-unit">T</span></span>
+        <span class="hero-stat-label">Global cybercrime cost 2024</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-value">$1.9<span class="metric-unit">M</span></span>
+        <span class="hero-stat-label">Saved per breach w/ AI security</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- THESIS -->
+<div class="thesis-section" id="overview">
+  <div class="thesis-inner">
+    <div class="thesis-label">Research Thesis</div>
+    <blockquote class="thesis-text">
+      "Cyberattacks targeting U.S. industries have increased significantly, affecting organizations across both the public and private sectors and causing massive financial and operational damage. This study analyzes the five most vulnerable U.S. industries by examining reported breach data, sector-specific financial losses, and infrastructure-related economic consequences — highlighting the disproportionate impact on critical infrastructure and underscoring the economic necessity of proactive cybersecurity investment."
+    </blockquote>
+  </div>
+</div>
+
+<!-- MACRO METRICS STRIP -->
+<div class="metrics-strip">
+  <div class="metrics-grid">
+    <div class="metric-card reveal">
+      <span class="metric-value">$10.22<span class="metric-unit">M</span></span>
+      <span class="metric-label">U.S. avg. breach cost 2025 (projected)</span>
+    </div>
+    <div class="metric-card reveal reveal-delay-1">
+      <span class="metric-value">194</span>
+      <span class="metric-label">Days avg. to detect a breach globally</span>
+    </div>
+    <div class="metric-card reveal reveal-delay-2">
+      <span class="metric-value">$13.82<span class="metric-unit">T</span></span>
+      <span class="metric-label">Projected global cybercrime cost by 2028</span>
+    </div>
+    <div class="metric-card reveal reveal-delay-3">
+      <span class="metric-value">$176<span class="metric-unit">B</span></span>
+      <span class="metric-label">Global cybersecurity spending in 2023</span>
+    </div>
+    <div class="metric-card reveal reveal-delay-4">
+      <span class="metric-value">$813<span class="metric-unit">M</span></span>
+      <span class="metric-label">Ransomware extortion paid globally in 2024</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- INCIDENT BAR CHART -->
+<div class="chart-section" id="industries">
+  <div class="chart-inner">
+    <div class="section-label" style="color:var(--gold)">
+      <span style="background:var(--gold);width:24px;height:2px;display:inline-block"></span>
+      Incident Frequency
+    </div>
+    <h2 class="chart-title">Cyberattack Incidents by U.S. Industry Sector</h2>
+    <p class="chart-sub">All 21 sectors ranked by reported incident volume</p>
+    <div class="bar-chart" id="barChart">
+      <!-- bars injected by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- INDUSTRY CARDS -->
+<section id="costs">
+  <div class="section-label">Sector Deep Dives</div>
+  <h2 class="section-title">The Five Most Targeted Industries</h2>
+  <p class="section-body">Each sector carries a distinct financial profile — shaped by data sensitivity, operational criticality, attacker motivation, and defensive maturity.</p>
+  <div class="industries-grid">
+
+    <!-- CARD 1: PUBLIC ADMIN -->
+    <div class="industry-card reveal">
+      <div class="card-accent"></div>
+      <div class="card-body">
+        <div class="card-rank">Rank #1 by Incident Volume</div>
+        <div class="card-title">Public Administration</div>
+        <div class="card-incidents">🚨 3,026 Incidents</div>
+        <div class="card-metrics">
+          <div class="card-metric">
+            <span class="card-metric-val">$2.55M</span>
+            <span class="card-metric-lbl">Avg. breach cost (2024)</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">32,211</span>
+            <span class="card-metric-lbl">Federal incidents (FY2023)</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">$13B</span>
+            <span class="card-metric-lbl">Federal cyber budget FY2025</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">$3B</span>
+            <span class="card-metric-lbl">CISA budget FY2025</span>
+          </div>
+        </div>
+        <div class="card-highlight">
+          <strong>Key Risk:</strong> Highest attack volume of any sector. Nation-state actors and ransomware gangs target civic infrastructure, with proposed FY2026 CISA cuts of <strong>~$270M</strong> threatening to worsen defenses.
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2: HEALTHCARE -->
+    <div class="industry-card reveal reveal-delay-1">
+      <div class="card-accent" style="background:linear-gradient(90deg,#CC0000,#ff6b6b)"></div>
+      <div class="card-body">
+        <div class="card-rank">Rank #2 by Incident Volume · #1 by Cost</div>
+        <div class="card-title">Health Care &amp; Social Assistance</div>
+        <div class="card-incidents">🏥 2,181 Incidents</div>
+        <div class="card-metrics">
+          <div class="card-metric">
+            <span class="card-metric-val">$9.77M</span>
+            <span class="card-metric-lbl">Avg. breach cost (2024)</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">$21.9B</span>
+            <span class="card-metric-lbl">Ransomware downtime losses 2024</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">$4.9M</span>
+            <span class="card-metric-lbl">Mean ransom demand (2024)</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">$1.1M</span>
+            <span class="card-metric-lbl">Avg. productivity loss per breach</span>
+          </div>
+        </div>
+        <div class="card-highlight">
+          <strong>Key Risk:</strong> Costliest sector for 14 consecutive years. 65% of ransomware demands exceed $1M. The Change Healthcare attack alone cost an estimated <strong>$1.6 billion</strong>.
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3: INFORMATION -->
+    <div class="industry-card reveal reveal-delay-2">
+      <div class="card-accent" style="background:linear-gradient(90deg,#0066CC,#002D62)"></div>
+      <div class="card-body">
+        <div class="card-rank">Rank #3 by Incident Volume</div>
+        <div class="card-title">Information Sector</div>
+        <div class="card-incidents">💻 1,668 Incidents</div>
+        <div class="card-metrics">
+          <div class="card-metric">
+            <span class="card-metric-val">$5–6M</span>
+            <span class="card-metric-lbl">Avg. breach cost (est.)</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">3,341</span>
+            <span class="card-metric-lbl">Attacks/week (edu &amp; research, 2024)</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">28%</span>
+            <span class="card-metric-lbl">Govt entities w/ 5,000+ data partners</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">$10.22M</span>
+            <span class="card-metric-lbl">U.S. avg. breach cost (2025 proj.)</span>
+          </div>
+        </div>
+        <div class="card-highlight">
+          <strong>Key Risk:</strong> Critical infrastructure for all other sectors. The Salt Typhoon campaign breached <strong>Verizon, AT&amp;T &amp; T-Mobile</strong>, compromising government communications.
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 4: FINANCE -->
+    <div class="industry-card reveal reveal-delay-3">
+      <div class="card-accent" style="background:linear-gradient(90deg,#C8922A,#e6b040)"></div>
+      <div class="card-body">
+        <div class="card-rank">Rank #4 by Incident Volume · #2 by Cost</div>
+        <div class="card-title">Finance &amp; Insurance</div>
+        <div class="card-incidents">🏦 1,521 Incidents</div>
+        <div class="card-metrics">
+          <div class="card-metric">
+            <span class="card-metric-val">$6.08M</span>
+            <span class="card-metric-lbl">Avg. breach cost (2024)</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">233 days</span>
+            <span class="card-metric-lbl">Avg. breach detection time</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">449,855</span>
+            <span class="card-metric-lbl">Sensitive files exposed (avg. per org)</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">65%</span>
+            <span class="card-metric-lbl">Financial orgs hit by ransomware (2024)</span>
+          </div>
+        </div>
+        <div class="card-highlight">
+          <strong>Key Risk:</strong> 22% above global average breach cost. Mega-breaches (50M+ records) cost <strong>$375 million</strong>. LoanDepot's 2024 breach totaled <strong>$63.4M</strong> in direct costs.
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 5: EDUCATION -->
+    <div class="industry-card reveal reveal-delay-4">
+      <div class="card-accent" style="background:linear-gradient(90deg,#2e9e4f,#56c273)"></div>
+      <div class="card-body">
+        <div class="card-rank">Rank #5 by Incident Volume</div>
+        <div class="card-title">Educational Services</div>
+        <div class="card-incidents">🎓 1,299 Incidents</div>
+        <div class="card-metrics">
+          <div class="card-metric">
+            <span class="card-metric-val">$3.65M</span>
+            <span class="card-metric-lbl">Avg. breach cost (IBM 2023)</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">$4.02M</span>
+            <span class="card-metric-lbl">Higher Ed recovery cost (2024)</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">$2.54B</span>
+            <span class="card-metric-lbl">Cumulative losses since 2018</span>
+          </div>
+          <div class="card-metric">
+            <span class="card-metric-val">56%</span>
+            <span class="card-metric-lbl">U.S. share of global edu ransomware</span>
+          </div>
+        </div>
+        <div class="card-highlight">
+          <strong>Key Risk:</strong> K-12 recovery costs more than doubled YoY (2023→2024). 67% of attacked institutions paid the ransom. Daily downtime costs average <strong>$548,185</strong>.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMPARATIVE COST TABLE -->
+<section>
+  <div class="section-label">Comparative Analysis</div>
+  <h2 class="section-title">Breach Cost Comparison by Sector</h2>
+  <p class="section-body">Financial severity varies dramatically across sectors — healthcare's per-incident cost is nearly 4× the public sector average.</p>
+  <div class="cost-table-wrap reveal">
+    <table class="cost-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Sector</th>
+          <th>Incidents</th>
+          <th>Avg. Breach Cost</th>
+          <th>Cost vs. Global Avg.</th>
+          <th>Relative Scale</th>
+          <th>2024 Trend</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank-cell">#1</td>
+          <td class="sector-name">Public Administration</td>
+          <td>3,026</td>
+          <td class="cost-cell">$2.55M</td>
+          <td>−48%</td>
+          <td class="cost-bar-cell"><div class="cost-bar-inner" style="width:26%"></div></td>
+          <td class="trend-up">↑ Volume</td>
+        </tr>
+        <tr>
+          <td class="rank-cell">#2</td>
+          <td class="sector-name">Health Care &amp; Social Assistance</td>
+          <td>2,181</td>
+          <td class="cost-cell">$9.77M</td>
+          <td>+100%</td>
+          <td class="cost-bar-cell"><div class="cost-bar-inner" style="width:100%"></div></td>
+          <td class="trend-dn">↓ Marginal</td>
+        </tr>
+        <tr>
+          <td class="rank-cell">#3</td>
+          <td class="sector-name">Information</td>
+          <td>1,668</td>
+          <td class="cost-cell">~$5–6M</td>
+          <td>+22%</td>
+          <td class="cost-bar-cell"><div class="cost-bar-inner" style="width:57%"></div></td>
+          <td class="trend-up">↑ State attacks</td>
+        </tr>
+        <tr>
+          <td class="rank-cell">#4</td>
+          <td class="sector-name">Finance &amp; Insurance</td>
+          <td>1,521</td>
+          <td class="cost-cell">$6.08M</td>
+          <td>+22%</td>
+          <td class="cost-bar-cell"><div class="cost-bar-inner" style="width:62%"></div></td>
+          <td class="trend-up">↑ Ransomware rate</td>
+        </tr>
+        <tr>
+          <td class="rank-cell">#5</td>
+          <td class="sector-name">Educational Services</td>
+          <td>1,299</td>
+          <td class="cost-cell">$3.65M</td>
+          <td>−25%</td>
+          <td class="cost-bar-cell"><div class="cost-bar-inner" style="width:37%"></div></td>
+          <td class="trend-up">↑↑ Recovery costs</td>
+        </tr>
+        <tr style="background:rgba(0,45,98,0.04); font-style:italic">
+          <td class="rank-cell">—</td>
+          <td style="color:var(--muted)">Global Average (all sectors)</td>
+          <td style="color:var(--muted)">—</td>
+          <td class="cost-cell" style="color:var(--muted)">$4.88M</td>
+          <td style="color:var(--muted)">baseline</td>
+          <td class="cost-bar-cell"><div class="cost-bar-inner" style="width:50%; background: rgba(0,45,98,0.3)"></div></td>
+          <td style="color:var(--muted)">↑ +9% (2025)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<div class="section-full" style="background:var(--smoke); border-top:1px solid var(--border); border-bottom:1px solid var(--border);" id="cases">
+  <div class="section-inner">
+    <div class="section-label">Documented Financial Impact</div>
+    <h2 class="section-title">High-Profile Case Studies</h2>
+    <p class="section-body">Real-world incidents with verified financial disclosures illustrating the true cost of cyberattacks across sectors.</p>
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <div class="case-year">2024 · Healthcare · Ransomware</div>
+        <div class="case-org">Change Healthcare (UnitedHealth Group)</div>
+        <div class="case-cost">~$1.6B</div>
+        <div class="case-desc">ALPHV/BlackCat ransomware disrupted the nation's largest health payment processor. Initial ransom: $22M. Remediation reached $872M before total projected costs hit $1.6B. One-third of all U.S. patient records were implicated.</div>
+      </div>
+      <div class="case-card reveal reveal-delay-1">
+        <div class="case-year">2024 · Finance · Data Breach</div>
+        <div class="case-org">LoanDepot</div>
+        <div class="case-cost">$63.4M</div>
+        <div class="case-desc">Direct breach costs of $63.4M disclosed in Q1 2024 earnings. Loan originations dropped 22% during the outage period, demonstrating how financial sector breaches translate directly to measurable revenue loss.</div>
+      </div>
+      <div class="case-card reveal reveal-delay-2">
+        <div class="case-year">2024 · Information · State-Sponsored</div>
+        <div class="case-org">Salt Typhoon (Verizon, AT&amp;T, T-Mobile)</div>
+        <div class="case-cost">$100M+</div>
+        <div class="case-desc">Chinese state-sponsored actors breached three of the four largest U.S. carriers, compromising millions of users' data and sensitive government communications. Per-carrier exposure estimated in the hundreds of millions.</div>
+      </div>
+      <div class="case-card reveal reveal-delay-3">
+        <div class="case-year">2024 · Government · Ransomware</div>
+        <div class="case-org">City of Hoboken, NJ &amp; White Lake Township, MI</div>
+        <div class="case-cost">$35M+ Disrupted</div>
+        <div class="case-desc">Hoboken's ransomware attack forced City Hall to close, disrupting all digital services. White Lake Township had a $35M civic center project suspended due to a compromised financial transaction.</div>
+      </div>
+      <div class="case-card reveal reveal-delay-4">
+        <div class="case-year">2024 · Education · Ransomware</div>
+        <div class="case-org">U.S. K-12 School Districts (Aggregated)</div>
+        <div class="case-cost">$548K/day</div>
+        <div class="case-desc">116 confirmed ransomware attacks hit U.S. schools in 2024 — affecting 1.8 million records. Average daily downtime cost: $548,185. 67% of attacked institutions paid ransoms averaging $847,000.</div>
+      </div>
+      <div class="case-card reveal">
+        <div class="case-year">2018–2024 · Education · Cumulative</div>
+        <div class="case-org">All U.S. Schools &amp; Colleges</div>
+        <div class="case-cost">$2.54B</div>
+        <div class="case-desc">Total cumulative ransomware losses to U.S. educational institutions since 2018. The U.S. accounts for 56% of all global ransomware attacks on educational targets — more than every other country combined.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PREVENTION ROI -->
+<div class="roi-section" id="prevention">
+  <div class="roi-inner">
+    <div class="section-label" style="color:var(--gold)">
+      <span style="background:var(--gold);width:24px;height:2px;display:inline-block"></span>
+      Return on Investment
+    </div>
+    <h2 class="chart-title">The Economics of Cybersecurity Prevention</h2>
+    <p class="chart-sub">Data consistently shows proactive investment reduces breach costs far more than the investment itself.</p>
+    <div class="roi-grid">
+      <div class="roi-card reveal">
+        <div class="roi-icon">🤖</div>
+        <span class="roi-amount">$1.9M saved</span>
+        <div class="roi-desc">Per breach, for organizations with AI &amp; automation integrated into security operations vs. those without.</div>
+      </div>
+      <div class="roi-card reveal reveal-delay-1">
+        <div class="roi-icon">🛡️</div>
+        <span class="roi-amount">$248K/yr saved</span>
+        <div class="roi-desc">Average annual savings for companies with mature incident response teams and regular security testing programs.</div>
+      </div>
+      <div class="roi-card reveal reveal-delay-2">
+        <div class="roi-icon">🔐</div>
+        <span class="roi-amount">$223K/yr saved</span>
+        <div class="roi-desc">Average annual savings from deploying Identity &amp; Access Management (IAM) solutions across enterprise environments.</div>
+      </div>
+      <div class="roi-card reveal reveal-delay-3">
+        <div class="roi-icon">⏱️</div>
+        <span class="roi-amount">$1.12M saved</span>
+        <div class="roi-desc">Savings when a breach is contained in under 200 days vs. organizations taking longer — speed is a financial multiplier.</div>
+      </div>
+      <div class="roi-card reveal reveal-delay-4">
+        <div class="roi-icon">📊</div>
+        <span class="roi-amount">11.6% of IT</span>
+        <div class="roi-desc">Average share of IT budget large enterprises allocate to cybersecurity — a benchmark for underfunded sectors like education.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONCLUSIONS -->
+<section id="conclusions">
+  <div class="section-label">Key Findings</div>
+  <h2 class="section-title">Conclusions &amp; Recommendations</h2>
+  <p class="section-body">Six evidence-based conclusions and six policy recommendations drawn from the cross-sector financial analysis.</p>
+  <div class="conclusions-grid">
+    <div class="conclusion-card reveal">
+      <div class="conclusion-num">01</div>
+      <div class="conclusion-text"><strong>Breach costs are at all-time highs.</strong> The U.S. average of $9.36M in 2024 is projected to reach $10.22M in 2025 — a sustained multi-year escalation showing no sign of plateauing.</div>
+    </div>
+    <div class="conclusion-card reveal reveal-delay-1">
+      <div class="conclusion-num">02</div>
+      <div class="conclusion-text"><strong>Healthcare faces existential financial risk.</strong> $21.9B in ransomware downtime losses in 2024 — a 340% increase since 2019 — threatens the financial viability of entire healthcare networks.</div>
+    </div>
+    <div class="conclusion-card reveal reveal-delay-2">
+      <div class="conclusion-num">03</div>
+      <div class="conclusion-text"><strong>Public administration is structurally vulnerable.</strong> The highest incident volume combined with underfunded state &amp; local defenses creates growing risk to civic infrastructure and service delivery.</div>
+    </div>
+    <div class="conclusion-card reveal reveal-delay-3">
+      <div class="conclusion-num">04</div>
+      <div class="conclusion-text"><strong>Information sector attacks multiply harm.</strong> Breaches of telecom and tech infrastructure cascade into every dependent sector — healthcare, finance, government, and education simultaneously.</div>
+    </div>
+    <div class="conclusion-card reveal reveal-delay-4">
+      <div class="conclusion-num">05</div>
+      <div class="conclusion-text"><strong>Finance presents a sophisticated paradox.</strong> Despite leading cybersecurity investment, the sector records the second-highest breach costs and the longest average dwell time of 233 days.</div>
+    </div>
+    <div class="conclusion-card reveal">
+      <div class="conclusion-num">06</div>
+      <div class="conclusion-text"><strong>Education faces a catastrophic funding gap.</strong> K-12 recovery costs more than doubled in one year (2023→2024), driven by chronic underfunding that leaves schools defenseless against increasingly sophisticated ransomware.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<div class="references-section" id="references">
+  <div class="refs-inner">
+    <div class="section-label">Sources</div>
+    <h2 class="section-title" style="font-size:1.8rem">References</h2>
+    <ul class="ref-list">
+      <li>ABA Banking Journal. (2024). Report: Average data breach cost for financial sector tops $6M. <a href="https://bankingjournal.aba.com/2024/08/report-average-data-breach-cost-for-financial-sector-tops-6m/" target="_blank">bankingjournal.aba.com ↗</a></li>
+      <li>Chainalysis. (2025). The 2025 Crypto Crime Report: Ransomware. <a href="https://www.chainalysis.com/blog/ransomware-2025/" target="_blank">chainalysis.com ↗</a></li>
+      <li>Comparitech. (2024). Ransomware attacks on US schools and colleges. <a href="https://www.comparitech.com/blog/information-security/school-ransomware-attacks/" target="_blank">comparitech.com ↗</a></li>
+      <li>CISA. (2024). FY2025 Budget Overview. U.S. Dept. of Homeland Security. <a href="https://govconwire.com/2024/11/cisa-3b-fy-2025-budget" target="_blank">govconwire.com ↗</a></li>
+      <li>Cybersecurity Ventures. (2024). Cybercrime to Cost the World $9.5 Trillion USD in 2024. <a href="https://cybersecurityventures.com/" target="_blank">cybersecurityventures.com ↗</a></li>
+      <li>Federal Bureau of Investigation — IC3. (2024). 2024 Internet Crime Report. <a href="https://www.ic3.gov/" target="_blank">ic3.gov ↗</a></li>
+      <li>Federal News Network. (2024). Biden budget includes $13B for cybersecurity. <a href="https://federalnewsnetwork.com/budget/2024/03/biden-budget-request-includes-13b-for-cybersecurity-continuing-upward-trend/" target="_blank">federalnewsnetwork.com ↗</a></li>
+      <li>Fortinet. (2025). Cybersecurity Statistics and Trends. <a href="https://www.fortinet.com/resources/cyberglossary/cybersecurity-statistics" target="_blank">fortinet.com ↗</a></li>
+      <li>Government Accountability Office (GAO). (2024). Federal Information Security Report. <a href="https://www.gao.gov/" target="_blank">gao.gov ↗</a></li>
+      <li>HIMSS. (2024). The Hidden Cost of Healthcare Cyber Attacks. <a href="https://www.himssconference.com/" target="_blank">himssconference.com ↗</a></li>
+      <li>HIPAA Journal. (2024). Cost of Healthcare Data Breach 2024. <a href="https://www.hipaajournal.com/cost-healthcare-data-breach-2024/" target="_blank">hipaajournal.com ↗</a></li>
+      <li>IBM Security &amp; Ponemon Institute. (2024). Cost of a Data Breach Report 2024. <a href="https://www.ibm.com/reports/data-breach" target="_blank">ibm.com ↗</a></li>
+      <li>IBM Security &amp; Ponemon Institute. (2025). Cost of a Data Breach Report 2025. <a href="https://www.ibm.com/reports/data-breach" target="_blank">ibm.com ↗</a></li>
+      <li>IBM Security. (2024). Cost of a Data Breach in the Healthcare Industry 2024. <a href="https://www.ibm.com/think/insights/cost-of-a-data-breach-healthcare-industry" target="_blank">ibm.com ↗</a></li>
+      <li>IBM Security. (2024). Cost of a Data Breach in the Financial Industry 2024. <a href="https://www.ibm.com/think/insights/cost-of-a-data-breach-2024-financial-industry" target="_blank">ibm.com ↗</a></li>
+      <li>IBM Security. (2024). Reducing Ransomware Recovery Costs in Education. <a href="https://www.ibm.com/think/insights/reducing-ransomware-recovery-costs-in-education" target="_blank">ibm.com ↗</a></li>
+      <li>Intraprise Health. (2024). The Cost of Cyberattacks in Healthcare. <a href="https://intraprisehealth.com/the-cost-of-cyberattacks-in-healthcare/" target="_blank">intraprisehealth.com ↗</a></li>
+      <li>Keeper Security. (2025). Public Data at Risk: Key Breaches of Q4 2024. <a href="https://www.keepersecurity.com/blog/2025/01/08/public-data-at-risk-key-breaches-of-q4-2024/" target="_blank">keepersecurity.com ↗</a></li>
+      <li>Kiteworks. (2024). Top 11 Data Breaches 2024. <a href="https://www.kiteworks.com/top-11-data-breaches-2024-risk-score/" target="_blank">kiteworks.com ↗</a></li>
+      <li>Morgan Lewis. (2025). Average Cost of Data Breaches Increased Globally in 2024. <a href="https://www.morganlewis.com/blogs/sourcingatmorganlewis/2025/05/study-finds-average-cost-of-data-breaches-significantly-increased-globally-in-2024" target="_blank">morganlewis.com ↗</a></li>
+      <li>Sophos. (2024). The State of Ransomware in Education 2024. <a href="https://www.sophos.com/en-us/whitepaper/state-of-ransomware-education" target="_blank">sophos.com ↗</a></li>
+      <li>StateScoop. (2024). Ransomware in Education Sector — 2024 Trends. <a href="https://statescoop.com/ransomware-education-sector-decline-2024/" target="_blank">statescoop.com ↗</a></li>
+      <li>Varonis. (2024). Cybersecurity Statistics: The Ultimate List. <a href="https://www.varonis.com/blog/cybersecurity-statistics" target="_blank">varonis.com ↗</a></li>
+      <li>Varonis. (2024). Education Cybersecurity Statistics. <a href="https://www.varonis.com/blog/education-cybersecurity-statistics" target="_blank">varonis.com ↗</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <strong>Florida Atlantic University — Undergraduate Research and Inquiry Program</strong><br>
+    The Financial Impact of Cyberattacks on U.S. Industries · Boca Raton, Florida · March 2026<br>
+    Research compiled for academic and professional presentation purposes only.
+  </p>
+</footer>
+
+<script>
+  // ── SCROLL REVEAL ─────────────────────────────────────────────────────────
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // ── BAR CHART ─────────────────────────────────────────────────────────────
+  const industries = [
+    { name: "Public Administration", count: 3026 },
+    { name: "Health Care & Social Assistance", count: 2181 },
+    { name: "Information", count: 1668 },
+    { name: "Finance and Insurance", count: 1521 },
+    { name: "Professional, Scientific & Technical", count: 1252 },
+    { name: "Educational Services", count: 1299 },
+    { name: "Other Services", count: 866 },
+    { name: "Manufacturing", count: 751 },
+    { name: "Retail Trade", count: 500 },
+    { name: "Arts, Entertainment & Recreation", count: 437 },
+    { name: "Transportation & Warehousing", count: 493 },
+    { name: "Undetermined", count: 321 },
+    { name: "Accommodation & Food Services", count: 308 },
+    { name: "Utilities", count: 295 },
+    { name: "Administrative & Support Services", count: 195 },
+    { name: "Wholesale Trade", count: 111 },
+    { name: "Real Estate & Rental", count: 91 },
+    { name: "Mining & Oil and Gas", count: 85 },
+    { name: "Construction", count: 51 },
+    { name: "Agriculture, Forestry & Fishing", count: 20 },
+    { name: "Management of Companies", count: 19 },
+  ].sort((a, b) => b.count - a.count);
+
+  const maxCount = industries[0].count;
+  const barChart = document.getElementById('barChart');
+  const topFive = new Set(["Public Administration","Health Care & Social Assistance","Information","Finance and Insurance","Educational Services"]);
+
+  industries.forEach((ind, i) => {
+    const pct = (ind.count / maxCount * 100).toFixed(1);
+    const isTop = topFive.has(ind.name);
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.style.transitionDelay = (i * 0.04) + 's';
+    row.innerHTML = `
+      <div class="bar-label" style="${isTop ? 'color:#fff;font-weight:600' : ''}">${ind.name}</div>
+      <div class="bar-track">
+        <div class="bar-fill" data-width="${pct}" style="background:${isTop ? 'linear-gradient(90deg,#CC0000,#ff4444)' : 'linear-gradient(90deg,rgba(255,255,255,0.15),rgba(255,255,255,0.25))'}"></div>
+      </div>
+      <div class="bar-count" style="${isTop ? 'color:rgba(255,200,100,0.9)' : ''}">${ind.count.toLocaleString()}</div>
+    `;
+    barChart.appendChild(row);
+  });
+
+  // Animate bars on scroll
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.bar-row').forEach(row => row.classList.add('visible'));
+        setTimeout(() => {
+          document.querySelectorAll('.bar-fill').forEach(fill => {
+            fill.style.width = fill.dataset.width + '%';
+          });
+        }, 100);
+        barObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.1 });
+  barObserver.observe(barChart);
+</script>
+</body>
+</html>
